@@ -41,7 +41,7 @@ import { Container } from "./home.styled";
           }
           
           Home.propTypes = {
-            trendMovie: propTypes.shape({
+            trendMovie: propTypes.arrayOf.propTypes.shape({
               id: propTypes.number.isRequired,
               title: propTypes.string.isRequired,
             })
