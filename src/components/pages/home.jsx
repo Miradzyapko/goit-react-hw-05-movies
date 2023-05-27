@@ -20,7 +20,7 @@ import { Container } from "./home.styled";
             const [error, setError] = useState('');
             const [isLoading, setIsLoading] = useState(false);*/
             useEffect(() => {
-              getTrendingMovies().then(res => setTrendMovie(res.data.results));
+              getTrendingMovies().then(res => setTrendMovie(res.data.results.json()));
   }, []);
 
      
