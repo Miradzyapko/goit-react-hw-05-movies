@@ -1,9 +1,9 @@
-
+import React from 'react';
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { Title, List, Item } from "./home.styled";
 import { getTrendingMovies } from '../servisesAPI/API';
-
+import propTypes from 'prop-types'
 import { Container } from "./home.styled";
 /*const imgUrl = 'https://image.tmdb.org/t/p/w500';*/
  const Home = () => {
@@ -20,7 +20,7 @@ import { Container } from "./home.styled";
             const [error, setError] = useState('');
             const [isLoading, setIsLoading] = useState(false);*/
             useEffect(() => {
-              getTrendingMovies().then(res => setTrendMovie(res.data.results.json()));
+              getTrendingMovies().then(res => setTrendMovie(res.data.results));
   }, []);
 
      
@@ -40,5 +40,10 @@ import { Container } from "./home.styled";
             )
           }
           
-       
+          Home.propTypes = {
+            trendMovie: propTypes.shape({
+              id: propTypes.number.isRequired,
+              title: propTypes.string.isRequired,
+            })
+          }
           export default  Home;
