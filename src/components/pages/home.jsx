@@ -7,7 +7,7 @@ import propTypes from 'prop-types'
 import { Container } from "./home.styled";
 /*const imgUrl = 'https://image.tmdb.org/t/p/w500';*/
  const Home = () => {
-  const [trendMovie, setTrendMovie] = useState([])
+  const [trendMovies, setTrendMovies] = useState([])
   /*
     class App extends Component {
         state = {
@@ -20,30 +20,29 @@ import { Container } from "./home.styled";
             const [error, setError] = useState('');
             const [isLoading, setIsLoading] = useState(false);*/
             useEffect(() => {
-              getTrendingMovies().then(res => setTrendMovie(res.data.results));
+              getTrendingMovies().then(setTrendMovies);
   }, []);
 
-     
+  
             return (
-              <Container>
-                <List>
-                  {trendMovie.map(({ id, title }) => {
-                   return <Item key={trendMovie.id}>
-                      <Link to={`/movies/${trendMovie.id}`}>
-                     
-                            <Title>{trendMovie.title}</Title>
-                       </Link>
-                    </Item>
-                  })}
-                </List>
-              </Container>
+              <>
+                <ul>
+                  {trendMovies.map(({ trendMovie, id, title }) => (
+                   <Item key={trendMovie.id}>{trendMovie.title}</Item>
+                      
+                      
+                    
+                 )) }
+                </ul>
+              </>
             )
           }
-          
+        /*
           Home.propTypes = {
-            trendMovie: propTypes.arrayOf.propTypes.shape({
+            trendMovie: propTypes.shape({
               id: propTypes.number.isRequired,
               title: propTypes.string.isRequired,
             })
-          }
+          }*/
+          
           export default  Home;
